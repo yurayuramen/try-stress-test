@@ -1,0 +1,13 @@
+readme2.md
+target
+.idea
+.g8
+.idea_modules
+.classpath
+.project
+.settings
+/nginx/logs
+!/nginx/logs/.gitkeep
+/gatling/results
+!/gatling/results/.gitkeep
+
