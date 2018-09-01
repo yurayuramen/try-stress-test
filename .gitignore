@@ -1,4 +1,4 @@
-readme2.md
+/readme2.md
 target
 .idea
 .g8
@@ -6,8 +6,9 @@ target
 .classpath
 .project
 .settings
-/nginx/logs
+/nginx/logs/*
 !/nginx/logs/.gitkeep
-/gatling/results
+/gatling/results/*
 !/gatling/results/.gitkeep
-
+/secret
+/finagle
