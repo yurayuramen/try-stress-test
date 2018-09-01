@@ -10,9 +10,9 @@ GET     /play/code01                           controllers.TestController.code01
 GET     /play/code02                           controllers.TestController.code02
 GET     /play/code03                           controllers.TestController.code03
 
-GET     /play/lpush01                           controllers.TestController.lpush01
-GET     /play/lpush02                           controllers.TestController.lpush02
-GET     /play/lpush03                           controllers.TestController.lpush03
+GET     /play/lpush01                           controllers.RedisPusherController.lpush01
+GET     /play/lpush02                           controllers.RedisPusherController.lpush02
+GET     /play/lpush03                           controllers.RedisPusherController.lpush03
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
