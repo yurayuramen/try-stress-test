@@ -5,8 +5,8 @@ import scala.concurrent.duration._
 
 class MyFirstGatling extends Simulation {
   val baseURL = "http://127.0.0.1:8080"
-  val users = 10
-  val times = 5 seconds
+  val users = 40000
+  val times = 20 seconds
   val pauseTime = 100 milliseconds
 
   val userAgent = s"baseURL:${baseURL},user:${users},times${times},avg:${users / times},pause:${pauseTime}"
