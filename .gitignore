@@ -12,3 +12,4 @@ target
 !/gatling/results/.gitkeep
 /secret
 /finagle
+/play-quickstart/app/controllers/TestController.scala
