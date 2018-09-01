@@ -1,12 +1,8 @@
 package controllers
 
-import java.util.UUID
-
 import javax.inject._
 import play.api._
 import play.api.mvc._
-
-import scala.util.Random
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -27,19 +23,6 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   }
 
   def hello() = Action{
-    Ok("ok")
+    Ok("")
   }
-
-  def random() = Action{
-    val random = Random.nextInt(30)
-
-    Ok(s"$random")
-  }
-
-  def uuid() = Action{
-    val uuid = UUID.randomUUID().toString
-
-    Ok(s"$uuid")
-  }
-
 }
