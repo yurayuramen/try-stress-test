@@ -21,6 +21,8 @@ lazy val `finagle-quickstart` = (project in file(".")).
     name := "finagle-quickstart",
     libraryDependencies ++= Seq(
       "com.twitter" %% "finagle-http" % "18.8.0"
+      ,"com.twitter" %% "finagle-redis" % "18.8.0"
+
     ),
     version := "1.0"
   ).enablePlugins(JavaAppPackaging)

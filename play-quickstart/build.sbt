@@ -5,6 +5,11 @@ version := "1.0-SNAPSHOT"
 
 //lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
+//バックエンドをakka-httpにする場合
+//lazy val `play-quickstart` = (project in file(".")).enablePlugins(PlayScala)
+
+
+//バックエンドをnettyにする場合
 lazy val `play-quickstart` = (project in file("."))
   .enablePlugins(PlayScala, PlayNettyServer)
   .disablePlugins(PlayAkkaHttpServer)
@@ -14,6 +19,7 @@ scalaVersion := "2.12.6"
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "net.debasishg" %% "redisclient" % "3.7"
+libraryDependencies += "com.twitter" %% "finagle-redis" % "18.8.0"
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
