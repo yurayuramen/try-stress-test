@@ -13,3 +13,12 @@ target
 /secret
 /finagle
 /play-quickstart/app/controllers/TestController.scala
+/play-quickstart/lib/*
+!/play-quickstart/lib/.gitkeep
+/finagle-quickstart/lib/*
+!/finagle-quickstart/lib/.gitkeep
+/akka-http-quickstart/lib/*
+!/akka-http-quickstart/lib/.gitkeep
+/logs/*
+!/logs/.gitkeep
+

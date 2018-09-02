@@ -1,6 +1,6 @@
 package com.example
 
-import akka.actor.{ ActorRef, ActorSystem }
+import akka.actor.{ActorRef, ActorSystem}
 import akka.event.Logging
 
 import scala.concurrent.duration._
@@ -17,6 +17,7 @@ import scala.concurrent.Future
 import com.example.UserRegistryActor._
 import akka.pattern.ask
 import akka.util.Timeout
+import com.redis.RedisClientPool
 
 //#user-routes-class
 trait UserRoutes extends JsonSupport {
@@ -24,6 +25,8 @@ trait UserRoutes extends JsonSupport {
 
   // we leave these abstract, since they will be provided by the App
   implicit def system: ActorSystem
+
+  implicit lazy val context = system.dispatcher
 
   lazy val log = Logging(system, classOf[UserRoutes])
 
@@ -33,11 +36,13 @@ trait UserRoutes extends JsonSupport {
   // Required by the `ask` (?) method below
   implicit lazy val timeout = Timeout(5.seconds) // usually we'd obtain the timeout from the system's configuration
 
+  val redisClientPool = new RedisClientPool(host="127.0.0.1",port=6379,maxConnections = 10)
+
   //#all-routes
   //#users-get-post
   //#users-get-delete
   lazy val userRoutes: Route =
-    pathPrefix("users") {
+    pathPrefix("akka") {
       concat(
         //#users-get-delete
         pathEnd {
@@ -57,6 +62,38 @@ trait UserRoutes extends JsonSupport {
                 }
               }
             })
+        },
+        path("lpush01"){
+          get{
+            redisClientPool.withClient{client=>
+              client.rpush("list01",System.currentTimeMillis())
+            }
+            complete("lpush01")
+
+          }
+        },
+        path("lpush02"){
+          get{
+            Future{
+              redisClientPool.withClient{client=>
+                client.rpush("list02",System.currentTimeMillis())
+              }
+            }
+            complete("lpush02")
+          }
+        },
+        path("lpush03"){
+          get{
+            val future = Future{
+              redisClientPool.withClient{client=>
+                client.rpush("list03",System.currentTimeMillis())
+              }
+              "ok"
+            }
+            onSuccess(future){text=>
+              complete(text)
+            }
+          }
         },
         //#users-get-post
         //#users-get-delete

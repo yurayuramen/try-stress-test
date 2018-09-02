@@ -14,6 +14,9 @@ lazy val `akka-http-quickstart` = (project in file(".")).
       "com.typesafe.akka" %% "akka-http-xml"        % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-stream"          % akkaVersion,
 
+      "ch.qos.logback" % "logback-classic" % "1.2.3",
+      "net.debasishg" %% "redisclient" % "3.7",
+
       "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion % Test,
       "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     % Test,
       "com.typesafe.akka" %% "akka-stream-testkit"  % akkaVersion     % Test,

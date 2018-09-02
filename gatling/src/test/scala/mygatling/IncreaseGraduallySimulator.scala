@@ -27,7 +27,7 @@ trait IncreaseGraduallySimulator extends Simulation with TrafficDefinitions.Traf
   //val uri = "/play/hello"
   //val uri = "/play"
 
-  val userAgent = s"baseURL:${baseURL},user:${users},times${times},avg:${users / times},pause:${pauseTime}"
+  val userAgent = s"baseURL,${baseURL},user,${users},times${times},avg,${users / times},pause,${pauseTime}"
 
 
 

@@ -1,18 +1,15 @@
 name := """my-tiny-play"""
-organization := "com.example"
+//organization := "com.example"
 
-version := "1.0-SNAPSHOT"
+//version := "1.0-SNAPSHOT"
 
 //lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 //バックエンドをakka-httpにする場合
-//lazy val `play-quickstart` = (project in file(".")).enablePlugins(PlayScala)
-
+lazy val `play-quickstart` = (project in file(".")).enablePlugins(PlayScala)
 
 //バックエンドをnettyにする場合
-lazy val `play-quickstart` = (project in file("."))
-  .enablePlugins(PlayScala, PlayNettyServer)
-  .disablePlugins(PlayAkkaHttpServer)
+//lazy val `play-quickstart` = (project in file(".")).enablePlugins(PlayScala, PlayNettyServer).disablePlugins(PlayAkkaHttpServer) //.aggregate(gatling).dependsOn(gatling)
 
 scalaVersion := "2.12.6"
 

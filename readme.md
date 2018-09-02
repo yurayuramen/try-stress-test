@@ -75,7 +75,7 @@ sbt "project finagle-quickstart" stage
 ```
 cd ${STRESS_TEST_DIR}
 sbt "project akka-http-quickstart" stage
-./akka-http-quickstart/target/universal/stage/bin/server
+./akka-http-quickstart/target/universal/stage/bin/akka-htt-quickstart
 ```
 
 * play
@@ -87,6 +87,23 @@ sbt "project play-quickstart" stage
 
 
 * gatling
+
+```bash
+cd ${STRESS_TEST_DIR}
+sbt "project gatling" clean packageBin && \
+cp ${STRESS_TEST_DIR}/gatling/target/scala-2.12/gatling_2.12-0.1.0.jar \
+${STRESS_TEST_DIR}/play-quickstart/lib && \
+cp ${STRESS_TEST_DIR}/gatling/target/scala-2.12/gatling_2.12-0.1.0.jar \
+${STRESS_TEST_DIR}/akka-http-quickstart/lib && \
+cp ${STRESS_TEST_DIR}/gatling/target/scala-2.12/gatling_2.12-0.1.0.jar \
+${STRESS_TEST_DIR}/finagle-quickstart/lib && \
+
+
+```
+
+* gatling
+-sでクラスを指定
+
 ```
 $GATLING_HOME/bin/gatling.sh \
 -sf ${STRESS_TEST_DIR}/gatling/src/test \
