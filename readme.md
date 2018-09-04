@@ -79,10 +79,12 @@ sbt "project akka-http-quickstart" stage
 ```
 
 * play
+チューニング
+https://www.playframework.com/documentation/2.6.x/SettingsNetty#configuring-transport-socket
 ```
 cd ${STRESS_TEST_DIR}
 sbt "project play-quickstart" stage
-./play-quickstart/target/universal/stage/bin/my-tiny-play
+JAVA_OPTS=-Dplay.server.netty.transport=native ./play-quickstart/target/universal/stage/bin/my-tiny-play
 ```
 
 
@@ -96,20 +98,15 @@ ${STRESS_TEST_DIR}/play-quickstart/lib && \
 cp ${STRESS_TEST_DIR}/gatling/target/scala-2.12/gatling_2.12-0.1.0.jar \
 ${STRESS_TEST_DIR}/akka-http-quickstart/lib && \
 cp ${STRESS_TEST_DIR}/gatling/target/scala-2.12/gatling_2.12-0.1.0.jar \
-${STRESS_TEST_DIR}/finagle-quickstart/lib && \
+${STRESS_TEST_DIR}/finagle-quickstart/lib
 
 
 ```
 
 * gatling
--sでクラスを指定
+-sでクラスを指定して実行できる
 
 ```
-$GATLING_HOME/bin/gatling.sh \
--sf ${STRESS_TEST_DIR}/gatling/src/test \
--s mygatling.MyFirstGatling \
--rf ${STRESS_TEST_DIR}/gatling/results
-
 JAVA_OPTS=-Dmygatling.baseurl=http://127.0.0.1:8080 \
 $GATLING_HOME/bin/gatling.sh \
 -sf ${STRESS_TEST_DIR}/gatling/src/test \
