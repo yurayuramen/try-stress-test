@@ -86,3 +86,20 @@ class PlayLpush02_2000 extends PlayLpush02
   def maximum:Double = 2000
   this.run()
 }
+
+
+trait PlayLindex03 extends IncreaseGraduallySimulator{
+
+  //def name = "nginx"
+  override val scenarioBuilder = scenario(name)
+    .exec(http("lindex03").get("/play/lindex03")).pause(pauseTime)
+
+
+}
+
+
+class PlayLindex03_1000 extends PlayLindex03
+{
+  def maximum:Double = 1000
+  this.run()
+}
