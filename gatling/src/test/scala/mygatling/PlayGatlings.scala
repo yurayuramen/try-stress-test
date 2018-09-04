@@ -32,6 +32,13 @@ class Play1000 extends Play with TrafficMax1000{this.run()}
 
 class Play3000 extends Play with TrafficMax3000{this.run()}
 
+class Play3500 extends Play {
+    def maximum:Double = 3500
+    //override def maximun:Double = 4000d
+      this.run()
+}
+
+
 trait PlayLpush01 extends IncreaseGraduallySimulator{
 
   //def name = "nginx"
@@ -73,3 +80,9 @@ class PlayLpush02_200 extends PlayLpush02 with TrafficMax200{this.run()}
 class PlayLpush03_200 extends PlayLpush03 with TrafficMax200{this.run()}
 
 class PlayLpush04_200 extends PlayLpush04 with TrafficMax200{this.run()}
+
+class PlayLpush02_2000 extends PlayLpush02
+{
+  def maximum:Double = 2000
+  this.run()
+}
