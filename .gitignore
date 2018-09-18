@@ -21,4 +21,7 @@ target
 !/akka-http-quickstart/lib/.gitkeep
 /logs/*
 !/logs/.gitkeep
+/docker/.env
+/docker/k8s/.env.sh
+/docker/k8s/tmp
 

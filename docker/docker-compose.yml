@@ -1,0 +1,56 @@
+version: '3.1'
+services:
+  nginx:
+    image: nginx:1.15.3-alpine
+    container_name: try-stress-test-nginx
+    volumes:
+    - "../nginx:/etc/nginx"
+    ports:
+    - "8080:8080"
+    logging:
+      driver: "none" # defaults if not specified
+      options:
+        max-size: "10m"
+        max-file: "3"
+    depends_on:
+    - play
+  play:
+    build: ../play-quickstart
+    image: ${IMAGE_PREFIX}try-stress-test-play
+    container_name: try-stress-test-play
+    volumes:
+    - "../play-quickstart/target/universal/stage:/app"
+    working_dir:
+      /app
+    ports:
+    - "9000:9000"
+    logging:
+      driver: "none" # defaults if not specified
+      options:
+        max-size: "10m"
+        max-file: "3"
+    command:
+    - bash
+    - -c
+    - rm /app/RUNNING_PID ; ./bin/my-tiny-play
+  play-test-run:
+    image: try-stress-test-play
+    container_name: try-stress-test-run
+    volumes:
+    - "../play-quickstart:/app"
+    - "${MY_HOME}/.sbt:/root/.sbt"
+    - "${MY_HOME}/.ivy2:/root/.ivy2"
+    working_dir:
+      /app
+    depends_on:
+    - nginx
+    command:
+    - bash
+    - -c
+    - /sbt/bin/sbt 'test:runMain client.RequestMain nginx:8080'
+  gatling:
+    build: ../gatling
+    image: ${IMAGE_PREFIX}try-stress-test-gatling
+    container_name: try-stress-test-gatling
+
+

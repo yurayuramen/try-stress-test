@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: play
+spec:
+  selector:
+    matchLabels:
+      app: play
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: play
+    spec:
+      containers:
+      - name: play
+        image: gcr.io/$#{PROJECT}/try-stress-test-play
+        ports:
+        - containerPort: 80
+        command: ["bash"]
+        args: ["-c", "rm /app/RUNNING_PID ; /app/bin/my-tiny-play"]
+        env:
+        - name: JAVA_OPTS
+          value: "-Dplay.http.secret.key=zzzzz"
+        - name: VERSION
+          value: "3"
+        resources:
+          requests:  # ここで指定
+            cpu: 750m
+      - name: redis
+        image: redis:4.0.11-alpine
+        ports:
+        - containerPort: 6379

@@ -7,6 +7,10 @@ import mygatling.TrafficDefinitions._
 
 trait Play extends IncreaseGraduallySimulator{
 
+  override def httpProtocolBuilder = {
+    super.httpProtocolBuilder.header("Host","hello.example.com")
+
+  }
   //def name = "nginx"
   override val scenarioBuilder =     scenario(name).exec(http("slash").get("/play")).pause(pauseTime)
   /*scenario(name)
